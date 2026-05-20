@@ -342,11 +342,6 @@
     overflow: hidden;
     margin-bottom: 20px;
   }
-  .yt-box iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
 
   .closing-msg {
     font-family: 'IM Fell English', serif;
@@ -418,6 +413,80 @@
     .cover-name  { font-size: 3rem; }
   }
 
+  .yt-player {
+    width: min(520px, 92vw);
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .play-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: rgba(200,169,110,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .play-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--gold);
+    transform: scale(0);
+    transition: transform 0.3s;
+    z-index: 0;
+  }
+  .play-btn:hover::before, .play-btn:active::before { transform: scale(1); }
+  .play-btn svg {
+    position: relative;
+    z-index: 1;
+    transition: fill 0.3s;
+  }
+  .play-btn:hover svg, .play-btn:active svg { fill: var(--deep-red); }
+  .play-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.4);
+    animation: pulse 2s ease-out infinite;
+  }
+  .play-pulse2 {
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.2);
+    animation: pulse 2s ease-out infinite 0.6s;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0; }
+  }
+  .play-label {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.55rem, 1.6vw, 0.72rem);
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .play-title {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.8;
+    text-align: center;
+  }
+
   /* scrollbar webkit */
   .doa-scroll::-webkit-scrollbar { width: 4px; }
   .doa-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -459,7 +528,7 @@
   <span class="ornament bl">❧</span>
   <span class="ornament br">❧</span>
 
-  <p class="cover-sub">— sebuah kejutan untuk Kaora —</p>
+  <p class="cover-sub">— sebuah kejutan untuk —</p>
   <h1 class="cover-title">Happy Birthday</h1>
   <h2 class="cover-name">Kaora</h2>
   <div class="cover-divider"></div>
@@ -476,7 +545,7 @@
   <span class="ornament tr">❧</span>
 
   <h2 class="menu-title">Spesial Buat Kaora</h2>
-  <p class="menu-subtitle">pilih hadiah yang ingin Kaora buka</p>
+  <p class="menu-subtitle">pilih hadiah yang ingin kamu buka</p>
 
   <div class="menu-grid">
     <button class="menu-btn" onclick="goTo(2)">🎁 &nbsp; Gift - 1 &nbsp; (Clue)</button>
@@ -593,13 +662,16 @@
   <h1 class="closing-title">Happy Birthday<br>Kaora ♡</h1>
   <div class="closing-divider"></div>
 
-  <div class="yt-box">
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/agneRtEe-t8"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      style="width:100%;height:100%;border:0;">
-    </iframe>
+  <div class="yt-player">
+    <p class="play-label">♪ &nbsp; lagu spesial buat kaora &nbsp; ♪</p>
+    <a class="play-btn" href="https://youtu.be/agneRtEe-t8" target="_blank" rel="noopener">
+      <div class="play-pulse"></div>
+      <div class="play-pulse2"></div>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="#c8a96e">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </a>
+    <p class="play-title">tap untuk putar lagu</p>
   </div>
 
   <p class="closing-msg">semoga hari ini dan seterusnya penuh kebahagiaan 🤍</p>
